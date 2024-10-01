@@ -1,4 +1,4 @@
-# A small app builder for julia
+# Builder script for julia apps
 
 Automatizes the building of Julia apps using [PackageCompiler.jl](https://github.com/JuliaLang/PackageCompiler.jl)
 [![License](http://img.shields.io/badge/license-GPL-brightgreen.svg?style=flat)](LICENSE.md)
