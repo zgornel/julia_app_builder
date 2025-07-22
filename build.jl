@@ -60,7 +60,7 @@ function build_context(project_dir)
             #"PackageCompiler"=>("https://github.com/JuliaLang/PackageCompiler.jl", "master"),
         ),
         CPU_TARGET = "generic",
-        PRECOMPILE_FILES = map(Base.Fix2(joinpath, "precompile.jl"), targets_paths)
+        PRECOMPILE_FILES = Dict(t=>joinpath(apps_path, t, "precompile.jl") for t in build_targets)
     )
     return ctx
 end
@@ -147,7 +147,7 @@ function build(ctx)
         printstyled("• Building: $(uppercase(target)) ...\n", color=:green, bold=true)
         create_app(target,
                    joinpath(ctx.COMPILED_PATH, target);
-                   precompile_execution_file=ctx.PRECOMPILE_FILES,
+                   precompile_execution_file=ctx.PRECOMPILE_FILES[target],
                    force=true,
                    cpu_target=ctx.CPU_TARGET)
      end
